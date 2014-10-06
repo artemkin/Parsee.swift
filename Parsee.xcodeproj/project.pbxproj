@@ -53,8 +53,8 @@
 		791D8F2619E2ECBD0054F17A = {
 			isa = PBXGroup;
 			children = (
-				791D8F3219E2ECBD0054F17A /* Parsee */,
-				791D8F3F19E2ECBD0054F17A /* ParseeTests */,
+				791D8F3219E2ECBD0054F17A /* Source */,
+				791D8F3F19E2ECBD0054F17A /* Tests */,
 				791D8F3119E2ECBD0054F17A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,13 +68,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		791D8F3219E2ECBD0054F17A /* Parsee */ = {
+		791D8F3219E2ECBD0054F17A /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				791D8F3519E2ECBD0054F17A /* Parsee.h */,
 				791D8F3319E2ECBD0054F17A /* Supporting Files */,
 			);
-			path = Parsee;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		791D8F3319E2ECBD0054F17A /* Supporting Files */ = {
@@ -85,13 +85,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		791D8F3F19E2ECBD0054F17A /* ParseeTests */ = {
+		791D8F3F19E2ECBD0054F17A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				791D8F4219E2ECBD0054F17A /* ParseeTests.swift */,
 				791D8F4019E2ECBD0054F17A /* Supporting Files */,
 			);
-			path = ParseeTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		791D8F4019E2ECBD0054F17A /* Supporting Files */ = {
@@ -321,7 +321,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Parsee/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -338,7 +338,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Parsee/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -358,7 +358,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ParseeTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -372,7 +372,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ParseeTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
