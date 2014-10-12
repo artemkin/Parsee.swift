@@ -256,7 +256,7 @@ func runScanner<T>(var state: T, f: (T, Character) -> T?) -> Parser<(String, T)>
 public let uint = Parser<UInt> { i in
     switch takeWhile1(isDigit).run(i) {
     case let (.OK(data), input):
-        if let num = data.unbox.toInt() { // TODO: fix conversion to uint
+        if let num = data.unbox.toUInt() {
             return (.OK(Box(UInt(num))), input)
         } else {
             return (.Fail("uint"), input)
@@ -265,4 +265,3 @@ public let uint = Parser<UInt> { i in
         return (.Fail(msg), input)
     }
 }
-
