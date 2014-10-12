@@ -10,6 +10,9 @@
 		791D8F3619E2ECBD0054F17A /* Parsee.h in Headers */ = {isa = PBXBuildFile; fileRef = 791D8F3519E2ECBD0054F17A /* Parsee.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		791D8F3C19E2ECBD0054F17A /* Parsee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791D8F3019E2ECBD0054F17A /* Parsee.framework */; };
 		791D8F4319E2ECBD0054F17A /* ParseeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D8F4219E2ECBD0054F17A /* ParseeTests.swift */; };
+		791D8F4D19E31E730054F17A /* Parsee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D8F4C19E31E730054F17A /* Parsee.swift */; };
+		791D8F4F19E32C320054F17A /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D8F4E19E32C320054F17A /* StringUtils.swift */; };
+		791D8F5119E7263B0054F17A /* Combinators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D8F5019E7263B0054F17A /* Combinators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		791D8F3B19E2ECBD0054F17A /* ParseeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParseeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		791D8F4119E2ECBD0054F17A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791D8F4219E2ECBD0054F17A /* ParseeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseeTests.swift; sourceTree = "<group>"; };
+		791D8F4C19E31E730054F17A /* Parsee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsee.swift; sourceTree = "<group>"; };
+		791D8F4E19E32C320054F17A /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		791D8F5019E7263B0054F17A /* Combinators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Combinators.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				791D8F3519E2ECBD0054F17A /* Parsee.h */,
+				791D8F4C19E31E730054F17A /* Parsee.swift */,
+				791D8F4E19E32C320054F17A /* StringUtils.swift */,
+				791D8F5019E7263B0054F17A /* Combinators.swift */,
 				791D8F3319E2ECBD0054F17A /* Supporting Files */,
 			);
 			path = Source;
@@ -209,6 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791D8F5119E7263B0054F17A /* Combinators.swift in Sources */,
+				791D8F4F19E32C320054F17A /* StringUtils.swift in Sources */,
+				791D8F4D19E31E730054F17A /* Parsee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +327,7 @@
 		791D8F4719E2ECBD0054F17A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -326,12 +339,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		791D8F4819E2ECBD0054F17A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -397,6 +412,7 @@
 				791D8F4819E2ECBD0054F17A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		791D8F4919E2ECBD0054F17A /* Build configuration list for PBXNativeTarget "ParseeTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +421,7 @@
 				791D8F4B19E2ECBD0054F17A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

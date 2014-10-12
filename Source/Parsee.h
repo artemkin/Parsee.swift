@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 artemkin. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Parsee.
 FOUNDATION_EXPORT double ParseeVersionNumber;
@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double ParseeVersionNumber;
 FOUNDATION_EXPORT const unsigned char ParseeVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Parsee/PublicHeader.h>
-
-
