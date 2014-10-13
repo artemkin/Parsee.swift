@@ -21,6 +21,15 @@ func testParser<T: Equatable>(input: String, parser: Parser<T>, expectedOpt: T?)
     return expectedOpt == nil
 }
 
+enum IP { case IP(UInt8, UInt8, UInt8, UInt8) }
+extension IP: Equatable {}
+func ==(lhs: IP, rhs: IP) -> Bool {
+    switch((lhs, rhs)) {
+    case let (.IP(l1, l2, l3, l4), .IP(r1, r2, r3, r4)):
+        return l1 == r1 && l2 == r2 && l3 == r3 && l4 == r4
+    }
+}
+
 class ParseeTests: XCTestCase {
 
     func test_matchPrefix() {
@@ -60,6 +69,17 @@ class ParseeTests: XCTestCase {
     }
 
     func test_uintParser() {
+        XCTAssert(testParser("", uint8, nil))
+        XCTAssert(testParser("-", uint8, nil))
+        XCTAssert(testParser("+", uint8, nil))
+        XCTAssert(testParser("-1", uint8, nil))
+        XCTAssert(testParser("+1", uint8, nil))
+        XCTAssert(testParser("0", uint8, 0))
+        XCTAssert(testParser("123", uint8, 123))
+        XCTAssert(testParser("00000000000123", uint8, 123))
+        XCTAssert(testParser("255", uint8, 255))
+        XCTAssert(testParser("256", uint8, nil))
+
         XCTAssert(testParser("", uint, nil))
         XCTAssert(testParser("0", uint, 0))
         XCTAssert(testParser("1", uint, 1))
@@ -68,5 +88,22 @@ class ParseeTests: XCTestCase {
         XCTAssert(testParser("12345 test", uint, 12345))
         XCTAssert(testParser(String(UInt.max), uint, UInt.max))
         XCTAssert(testParser("18446744073709551616", uint, nil))
+    }
+    
+
+    func test_parsingIPAddress() {
+
+        let parseIP =
+            uint8     >>- { d1 in
+            char(".") *>
+            uint8     >>- { d2 in
+            char(".") *>
+            uint8     >>- { d3 in
+            char(".") *>
+            uint8     >>- { d4 in
+                return_(IP.IP(d1, d2, d3, d4))
+            }}}}
+
+        XCTAssert(testParser("192.168.0.1", parseIP, IP.IP(192,168,0,1)))
     }
 }

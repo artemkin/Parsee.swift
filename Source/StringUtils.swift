@@ -54,31 +54,6 @@ extension UInt64: UnsignedIntegerTypeEx {}
 
 extension String {
     
-/*!!!
-    public func toUInt() -> UInt? {
-        if self.isEmpty {
-        return nil
-        }
-        
-        let maxDiv10 = UInt.max / 10
-    
-        var x: UInt = 0
-        for ch in self.unicodeScalars {
-            let value = ch.value
-            if value < 0x30 || value > 0x39 || x > maxDiv10 {
-                return nil
-            }
-            x *= 10
-            let num = UInt(value - 0x30)
-            if x > (UInt.max - num) {
-                return nil
-            }
-            x += num
-        }
-        return x
-    }
-*/
-
     /// If the string represents an integer that fits into an UInt, returns
     /// the corresponding integer.  This accepts strings that match the regular
     /// expression "[0-9]+" only.

@@ -39,7 +39,7 @@ public struct Input {
 public struct Parser<T> {
     let run: Input -> (Result<T>, Input)
 
-    subscript(callback: T -> ()) -> Parser<T> {
+    public subscript(callback: T -> ()) -> Parser<T> {
         return Parser<T> { i in
             switch self.run(i) {
             case let (.OK(data), input):
@@ -52,12 +52,11 @@ public struct Parser<T> {
     }
 }
 
-// TODO Rename these functions
-func parseOK<T>(data: T) -> Parser<T> {
+public func return_<T>(data: T) -> Parser<T> {
     return Parser<T> { i in (.OK(Box(data)), i)}
 }
 
-func parseFail<T>(msg: String) -> Parser<T> {
+public func fail<T>(msg: String) -> Parser<T> {
     return Parser<T> { i in (.Fail(msg), i)}
 }
 
@@ -116,7 +115,7 @@ let anyChar = Parser<Character> { input in
     return (.Fail("anyChar"), input)
 }
 
-func char(ch: Character) -> Parser<Character> {
+public func char(ch: Character) -> Parser<Character> {
     return satisfy({ $0 == ch }, errorMsg: "char")
 }
 
@@ -257,9 +256,23 @@ public let uint = Parser<UInt> { i in
     switch takeWhile1(isDigit).run(i) {
     case let (.OK(data), input):
         if let num = data.unbox.toUInt() {
-            return (.OK(Box(UInt(num))), input)
+            return (.OK(Box(num)), input)
         } else {
             return (.Fail("uint"), input)
+        }
+    case let (.Fail(msg), input):
+        return (.Fail(msg), input)
+    }
+}
+
+// TODO: get rid of copy/paste
+public let uint8 = Parser<UInt8> { i in
+    switch takeWhile1(isDigit).run(i) {
+    case let (.OK(data), input):
+        if let num = data.unbox.toUInt8() {
+            return (.OK(Box(num)), input)
+        } else {
+            return (.Fail("uint8"), input)
         }
     case let (.Fail(msg), input):
         return (.Fail(msg), input)
