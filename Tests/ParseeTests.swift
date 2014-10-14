@@ -68,6 +68,26 @@ class ParseeTests: XCTestCase {
         XCTAssert("18446744073709551616".toUInt() == nil) // UInt.max + 1
     }
 
+    func test_stringToInt() {
+        XCTAssert("".toInt8() == nil)
+        XCTAssert(" ".toInt8() == nil)
+        XCTAssert("-".toInt8() == nil)
+        XCTAssert("+".toInt8() == nil)
+        XCTAssert(" 1".toInt8() == nil)
+        XCTAssert("1 ".toInt8() == nil)
+        XCTAssert("-1".toInt8() == -1)
+        XCTAssert("+1".toInt8() == 1)
+        XCTAssert("0".toInt8() == 0)
+        XCTAssert("11".toInt8() == 11)
+        XCTAssert("11.".toInt8() == nil)
+        XCTAssert("123".toInt8() == 123)
+        XCTAssert("-123".toInt8() == -123)
+        XCTAssert("-130".toInt8() == nil)
+        XCTAssert("130".toInt8() == nil)
+        XCTAssert(String(Int8.max).toInt8() == Int8.max)
+        XCTAssert(String(Int8.min).toInt8() == Int8.min)
+    }
+
     func test_uintParser() {
         XCTAssert(testParser("", uint8, nil))
         XCTAssert(testParser("-", uint8, nil))
@@ -89,7 +109,6 @@ class ParseeTests: XCTestCase {
         XCTAssert(testParser(String(UInt.max), uint, UInt.max))
         XCTAssert(testParser("18446744073709551616", uint, nil))
     }
-    
 
     func test_parsingIPAddress() {
 
