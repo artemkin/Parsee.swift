@@ -153,3 +153,19 @@ extension String {
         return x
     }
 }
+
+extension String {
+
+    public func toDouble() -> Double? {
+        if self.isEmpty || self.hasPrefix(" ") {
+            return nil
+        }
+
+        return self.withCString() { p -> Double? in
+            var end: UnsafeMutablePointer<Int8> = nil
+            let result = strtod(p, &end)
+            return end.memory != 0 ? nil : result
+        }
+    }
+}
+
