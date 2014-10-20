@@ -126,7 +126,6 @@ func skipChar(ch: Character) -> Parser<()> {
 
 /// String parsers
 
-
 func take(n: Int, errorMsg: String = "take") -> Parser<String> {
     assert(n > 0)
     if n < 1 {
@@ -252,29 +251,35 @@ func runScanner<T>(var state: T, f: (T, Character) -> T?) -> Parser<(String, T)>
 ///////////////////////////////////////////////////////////////////////////////
 // Numeric parsers
 
-public let uint = Parser<UInt> { i in
-    switch takeWhile1(isDigit).run(i) {
-    case let (.OK(data), input):
-        if let num = data.unbox.toUInt() {
-            return (.OK(Box(num)), input)
-        } else {
-            return (.Fail("uint"), input)
+protocol ErrorMsg {
+    class var errorMsg: String { get }
+}
+
+func generateUnsignedParser<T: protocol<UnsignedIntegerTypeEx, ErrorMsg>>() -> Parser<T> {
+    return Parser<T> { input in
+        switch takeWhile1(isDigit).run(input) {
+        case let (.OK(data), input):
+            if let num: T = data.unbox.toUnsignedT() {
+                return (.OK(Box(num)), input)
+            } else {
+                return (.Fail(T.errorMsg), input)
+            }
+        case let (.Fail(msg), input):
+            return (.Fail(msg), input)
         }
-    case let (.Fail(msg), input):
-        return (.Fail(msg), input)
     }
 }
 
-// TODO: get rid of copy/paste
-public let uint8 = Parser<UInt8> { i in
-    switch takeWhile1(isDigit).run(i) {
-    case let (.OK(data), input):
-        if let num = data.unbox.toUInt8() {
-            return (.OK(Box(num)), input)
-        } else {
-            return (.Fail("uint8"), input)
-        }
-    case let (.Fail(msg), input):
-        return (.Fail(msg), input)
-    }
-}
+extension UInt:   ErrorMsg { static var errorMsg = "uint"   }
+extension UInt8:  ErrorMsg { static var errorMsg = "uint8"  }
+extension UInt16: ErrorMsg { static var errorMsg = "uint16" }
+extension UInt32: ErrorMsg { static var errorMsg = "uint32" }
+extension UInt64: ErrorMsg { static var errorMsg = "uint64" }
+
+public let uint:   Parser<UInt>   = generateUnsignedParser()
+public let uint8:  Parser<UInt8>  = generateUnsignedParser()
+public let uint16: Parser<UInt16> = generateUnsignedParser()
+public let uint32: Parser<UInt32> = generateUnsignedParser()
+public let uint64: Parser<UInt64> = generateUnsignedParser()
+
+

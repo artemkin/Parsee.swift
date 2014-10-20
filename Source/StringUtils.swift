@@ -42,7 +42,7 @@ public func iterateWhile(s: String, pred: Character -> Bool) -> String.Index {
     return index
 }
 
-protocol UnsignedIntegerTypeEx: UnsignedIntegerType {
+public protocol UnsignedIntegerTypeEx: UnsignedIntegerType {
     class var max: Self { get }
     init(_: UInt32)
 }
@@ -52,7 +52,7 @@ extension UInt16: UnsignedIntegerTypeEx {}
 extension UInt32: UnsignedIntegerTypeEx {}
 extension UInt64: UnsignedIntegerTypeEx {}
 
-protocol SignedIntegerTypeEx: SignedIntegerType {
+public protocol SignedIntegerTypeEx: SignedIntegerType {
     class var max: Self { get }
     class var min: Self { get }
     init(_: UInt32)
@@ -62,7 +62,7 @@ extension Int16: SignedIntegerTypeEx {}
 extension Int32: SignedIntegerTypeEx {}
 extension Int64: SignedIntegerTypeEx {}
 
-extension String {
+public extension String {
 
     /// If the string represents an integer that fits into an UInt, returns
     /// the corresponding integer.  This accepts strings that match the regular
